@@ -179,10 +179,10 @@
             </objects>
             <point key="canvasLocation" x="-918.32061068702285" y="919.71830985915494"/>
         </scene>
-        <!--Courses-->
+        <!--CourseViewController-->
         <scene sceneID="dkO-wi-zDP">
             <objects>
-                <viewController id="Po0-CI-UEc" customClass="CourseViewController" customModule="LearnConnect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Po0-CI-UEc" userLabel="CourseViewController" customClass="CourseViewController" customModule="LearnConnect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jwt-28-cIf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,6 +207,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="SY1-5K-rk5" kind="show" identifier="toCourseDetailVC" id="M46-3t-kpK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -228,6 +231,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7B-K5-Qru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-918.32061068702285" y="-408.45070422535213"/>
+        </scene>
+        <!--Course Detail View Controller-->
+        <scene sceneID="b4q-Cb-l9u">
+            <objects>
+                <viewController storyboardIdentifier="CourseDetailViewController" id="SY1-5K-rk5" customClass="CourseDetailViewController" customModule="LearnConnect" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HlZ-A1-N0c">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auY-xn-nHV">
+                                <rect key="frame" x="16" y="85" width="361" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CE-oZ-r1D">
+                                <rect key="frame" x="16" y="579" width="361" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="3DB-6X-Svj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkg-9j-DC3">
+                                <rect key="frame" x="153" y="323" width="87" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="lOS-IN-aoH"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="play.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="playButtonTepped:" destination="SY1-5K-rk5" eventType="touchUpInside" id="r8r-yH-QBQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2qs-A8-Jyk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fkg-9j-DC3" firstAttribute="leading" secondItem="2qs-A8-Jyk" secondAttribute="leading" constant="153" id="43N-su-AdB"/>
+                            <constraint firstItem="fkg-9j-DC3" firstAttribute="top" secondItem="HlZ-A1-N0c" secondAttribute="top" constant="323" id="FHb-GF-Z1k"/>
+                            <constraint firstItem="2qs-A8-Jyk" firstAttribute="trailing" secondItem="auY-xn-nHV" secondAttribute="trailing" constant="16" id="M8j-SN-L8K"/>
+                            <constraint firstItem="auY-xn-nHV" firstAttribute="top" secondItem="2qs-A8-Jyk" secondAttribute="top" constant="85" id="OW9-dG-ueo"/>
+                            <constraint firstItem="fkg-9j-DC3" firstAttribute="centerX" secondItem="auY-xn-nHV" secondAttribute="centerX" id="j2m-FC-6mb"/>
+                            <constraint firstItem="6CE-oZ-r1D" firstAttribute="leading" secondItem="2qs-A8-Jyk" secondAttribute="leading" constant="16" id="nTk-UY-vsN"/>
+                            <constraint firstItem="2qs-A8-Jyk" firstAttribute="bottom" secondItem="6CE-oZ-r1D" secondAttribute="bottom" constant="196" id="sCx-Qw-N6D"/>
+                            <constraint firstItem="auY-xn-nHV" firstAttribute="leading" secondItem="2qs-A8-Jyk" secondAttribute="leading" constant="16" id="tLL-Og-8bT"/>
+                            <constraint firstItem="2qs-A8-Jyk" firstAttribute="trailing" secondItem="6CE-oZ-r1D" secondAttribute="trailing" constant="16" id="wxy-WZ-Twq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0sT-k1-zi7"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="6CE-oZ-r1D" id="PIJ-T3-wR2"/>
+                        <outlet property="titleLabel" destination="auY-xn-nHV" id="TSu-Pf-9gj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bLH-eB-fcS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-74.045801526717554" y="-408.45070422535213"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZWz-GT-Ajc">
@@ -254,6 +316,7 @@
         <image name="book.pages.fill" catalog="system" width="107" height="128"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <image name="play.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,11 +9,22 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-final class CourseViewController: UIViewController {
+final class CourseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        courses.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
+        cell.textLabel?.text = courses[indexPath.row].title
+        return cell
+    }
+    
     @IBOutlet private weak var tableView: UITableView!
-
+    
     private var courses: [Course] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -43,7 +54,8 @@ final class CourseViewController: UIViewController {
                 let data = doc.data()
                 return Course(title: data["title"] as? String,
                               description: data["description"] as? String,
-                              id: data["id"] as? Int)
+                              id: data["id"] as? Int,
+                              videoURL: data["videoURL"] as! String)
             } ?? []
             
             DispatchQueue.main.async {
@@ -57,26 +69,19 @@ final class CourseViewController: UIViewController {
     }
     
     private func enrollInCourse() {
-        print("enroll tapped")
-    }
-}
-
-extension CourseViewController: UITableViewDataSource, UITableViewDelegate {
-    @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        courses.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
-        let course = courses[indexPath.row]
-        cell.textLabel?.text = course.title
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let selectedCourse = courses[indexPath.row]
+        performSegue(withIdentifier: "toCourseDetailVC", sender: selectedCourse)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCourseDetailVC" {
+            if let destinationVC = segue.destination as? CourseDetailViewController,
+               let selectedCourse = sender as? Course {
+                destinationVC.course = selectedCourse
+            }
+        }
+    } 
 }
-
-        
-
