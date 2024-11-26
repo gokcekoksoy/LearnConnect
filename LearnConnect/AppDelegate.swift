@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         return true
     }
+    
+    
 
     // MARK: UISceneSession Lifecycle
 

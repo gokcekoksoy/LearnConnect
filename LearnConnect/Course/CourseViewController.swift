@@ -12,7 +12,7 @@ import FirebaseAuth
 final class CourseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        courses.count
+        return courses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,13 +62,6 @@ final class CourseViewController: UIViewController, UITableViewDataSource, UITab
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    @IBAction func enrollButtonTapped(_ sender: Any) {
-        enrollInCourse()
-    }
-    
-    private func enrollInCourse() {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
